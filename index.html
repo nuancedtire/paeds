@@ -104,8 +104,7 @@
         }
         .header {
             position: sticky;
-            top: 0;
-            top: env(safe-area-inset-top);
+            top: env(safe-area-inset-top, 0);
             z-index: 100;
             background: rgba(30, 41, 59, 0.98);
             backdrop-filter: blur(12px);
@@ -113,19 +112,13 @@
             justify-content: space-between;
             align-items: center;
             gap: 16px;
-            padding: 20px 20px 16px 20px;
-            padding-top: max(20px, env(safe-area-inset-top, 0px) + 8px);
-            padding-left: max(20px, env(safe-area-inset-left, 20px));
-            padding-right: max(20px, env(safe-area-inset-right, 20px));
+            padding: max(20px, env(safe-area-inset-top, 0px) + 8px) max(20px, env(safe-area-inset-right, 20px)) 16px max(20px, env(safe-area-inset-left, 20px));
             border-bottom: 1px solid rgba(51, 65, 85, 0.5);
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
         @media (min-width: 900px) {
             .header {
                 padding: 28px 32px 20px 32px;
-                padding-top: 28px;
-                padding-left: 32px;
-                padding-right: 32px;
                 border-radius: var(--radius-xl) var(--radius-xl) 0 0;
             }
         }
@@ -199,10 +192,8 @@
         }
         .disclaimer strong { color: var(--danger-color); display: block; margin-bottom: 8px; font-weight: 600; }
         .search-box {
-            width: calc(100% - 40px - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px));
-            margin: 20px 20px 0 20px;
-            margin-left: max(20px, env(safe-area-inset-left, 20px));
-            margin-right: max(20px, env(safe-area-inset-right, 20px));
+            width: calc(100% - 2 * max(20px, env(safe-area-inset-left, 20px)));
+            margin: 20px max(20px, env(safe-area-inset-right, 20px)) 0 max(20px, env(safe-area-inset-left, 20px));
             padding: 16px 20px;
             font-size: 1rem;
             background: rgba(15, 23, 42, 0.8);
@@ -234,9 +225,7 @@
         .results-list {
             display: grid;
             gap: 16px;
-            margin: 20px;
-            margin-left: max(20px, env(safe-area-inset-left, 20px));
-            margin-right: max(20px, env(safe-area-inset-right, 20px));
+            margin: 20px max(20px, env(safe-area-inset-right, 20px)) 20px max(20px, env(safe-area-inset-left, 20px));
             padding-bottom: max(20px, env(safe-area-inset-bottom, 20px));
         }
         @media (min-width: 900px) {
@@ -311,19 +300,13 @@
         }
         #calculator-view { 
             display: none; 
-            padding: 20px; 
-            padding-left: max(20px, env(safe-area-inset-left, 20px));
-            padding-right: max(20px, env(safe-area-inset-right, 20px));
-            padding-bottom: max(20px, env(safe-area-inset-bottom, 20px));
+            padding: 20px max(20px, env(safe-area-inset-right, 20px)) max(20px, env(safe-area-inset-bottom, 20px)) max(20px, env(safe-area-inset-left, 20px));
             gap: 24px; 
             flex-direction: column; 
         }
         @media (min-width: 900px) {
             #calculator-view {
                 padding: 32px;
-                padding-left: 32px;
-                padding-right: 32px;
-                padding-bottom: 32px;
             }
         }
         .calculator-header {
@@ -566,9 +549,7 @@
             backdrop-filter: blur(8px);
             border-radius: var(--radius-lg);
             padding: 20px;
-            margin: 20px;
-            margin-left: max(20px, env(safe-area-inset-left, 20px));
-            margin-right: max(20px, env(safe-area-inset-right, 20px));
+            margin: 20px max(20px, env(safe-area-inset-right, 20px)) 20px max(20px, env(safe-area-inset-left, 20px));
             display: flex;
             flex-direction: column;
             gap: 16px;
