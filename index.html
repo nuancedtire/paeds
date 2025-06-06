@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
     <meta name="theme-color" content="#0f172a">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -54,14 +54,17 @@
             line-height: 1.6;
             font-size: 16px;
             min-height: 100vh;
+            min-height: calc(100vh + env(safe-area-inset-top));
             width: 100vw;
             margin: 0;
             padding: 0;
+            padding-top: env(safe-area-inset-top);
             overflow-x: hidden;
             scroll-behavior: smooth;
         }
         body {
             min-height: 100vh;
+            min-height: calc(100vh + env(safe-area-inset-top));
             width: 100vw;
             display: flex;
             flex-direction: column;
@@ -73,14 +76,15 @@
         .container {
             width: 100vw;
             min-height: 100vh;
+            min-height: calc(100vh + env(safe-area-inset-top));
             max-width: 480px;
             margin: 0 auto;
             padding: 0;
+            padding-top: 0;
             background: rgba(30, 41, 59, 0.95);
             backdrop-filter: blur(10px);
             display: flex;
             flex-direction: column;
-            min-height: 100vh;
             gap: 0;
             border-radius: 0;
             box-shadow: none;
@@ -93,12 +97,15 @@
                 border-radius: var(--radius-xl);
                 box-shadow: var(--shadow-xl);
                 min-height: calc(100vh - 40px);
+                min-height: calc(100vh - 40px + env(safe-area-inset-top));
                 background: rgba(30, 41, 59, 0.98);
+                padding-top: 0;
             }
         }
         .header {
             position: sticky;
             top: 0;
+            top: env(safe-area-inset-top);
             z-index: 100;
             background: rgba(30, 41, 59, 0.98);
             backdrop-filter: blur(12px);
@@ -107,12 +114,18 @@
             align-items: center;
             gap: 16px;
             padding: 20px 20px 16px 20px;
+            padding-top: max(20px, env(safe-area-inset-top, 0px) + 8px);
+            padding-left: max(20px, env(safe-area-inset-left, 20px));
+            padding-right: max(20px, env(safe-area-inset-right, 20px));
             border-bottom: 1px solid rgba(51, 65, 85, 0.5);
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
         @media (min-width: 900px) {
             .header {
                 padding: 28px 32px 20px 32px;
+                padding-top: 28px;
+                padding-left: 32px;
+                padding-right: 32px;
                 border-radius: var(--radius-xl) var(--radius-xl) 0 0;
             }
         }
@@ -186,8 +199,10 @@
         }
         .disclaimer strong { color: var(--danger-color); display: block; margin-bottom: 8px; font-weight: 600; }
         .search-box {
-            width: calc(100% - 40px);
+            width: calc(100% - 40px - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px));
             margin: 20px 20px 0 20px;
+            margin-left: max(20px, env(safe-area-inset-left, 20px));
+            margin-right: max(20px, env(safe-area-inset-right, 20px));
             padding: 16px 20px;
             font-size: 1rem;
             background: rgba(15, 23, 42, 0.8);
@@ -220,7 +235,9 @@
             display: grid;
             gap: 16px;
             margin: 20px;
-            padding-bottom: 20px;
+            margin-left: max(20px, env(safe-area-inset-left, 20px));
+            margin-right: max(20px, env(safe-area-inset-right, 20px));
+            padding-bottom: max(20px, env(safe-area-inset-bottom, 20px));
         }
         @media (min-width: 900px) {
             .results-list {
@@ -292,10 +309,21 @@
                 font-size: 1rem;
             }
         }
-        #calculator-view { display: none; padding: 20px; gap: 24px; flex-direction: column; }
+        #calculator-view { 
+            display: none; 
+            padding: 20px; 
+            padding-left: max(20px, env(safe-area-inset-left, 20px));
+            padding-right: max(20px, env(safe-area-inset-right, 20px));
+            padding-bottom: max(20px, env(safe-area-inset-bottom, 20px));
+            gap: 24px; 
+            flex-direction: column; 
+        }
         @media (min-width: 900px) {
             #calculator-view {
                 padding: 32px;
+                padding-left: 32px;
+                padding-right: 32px;
+                padding-bottom: 32px;
             }
         }
         .calculator-header {
@@ -539,6 +567,8 @@
             border-radius: var(--radius-lg);
             padding: 20px;
             margin: 20px;
+            margin-left: max(20px, env(safe-area-inset-left, 20px));
+            margin-right: max(20px, env(safe-area-inset-right, 20px));
             display: flex;
             flex-direction: column;
             gap: 16px;
